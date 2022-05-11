@@ -5,6 +5,7 @@ import SideBar from './components/SideBar.vue';
 import MatchHistory from './components/MatchHistory.vue';
 import NavBar from './components/NavBar.vue';
 import Scores from './components/Scores.vue';
+import Standings from './components/Standings.vue';
 </script>
 
 <template>
@@ -14,6 +15,7 @@ import Scores from './components/Scores.vue';
 		<div class="flex">
 			<MatchHistory />
 			<Scores />
+			<Standings />
 		</div>
 	</div>
 </template>
