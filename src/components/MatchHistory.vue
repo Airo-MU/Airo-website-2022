@@ -3,7 +3,7 @@ import MiniScoreCard from './MiniScoreCard.vue';
 </script>
 
 <template>
-	<div class="flex flex-col gap-10 h-screen p-8 border-r-2 border-slate-200 overflow-y-scroll">
+	<div class="flex flex-col gap-10 h-screen px-12 py-8 border-r-2 border-slate-200 overflow-y-scroll">
 		<section class="flex flex-col gap-6">
 			<h1 class="font-bold">Recent Match</h1>
 			<div class="flex flex-col gap-4 items-center p-4 border-2 bg-slate-100 border-slate-200 text-slate-600 rounded-xl">
@@ -19,7 +19,7 @@ import MiniScoreCard from './MiniScoreCard.vue';
 				</section>
 			</div>
 		</section>
-		<section class="flex flex-col gap-6">
+		<section class="flex flex-col gap-6 mb-12">
 			<h1 class="font-bold">Previous Matches</h1>
 			<mini-score-card t1="BITS" t2="JNTU" />
 			<mini-score-card t1="X1" t2="X2" />
