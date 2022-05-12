@@ -10,22 +10,17 @@ import Standings from './components/Standings.vue';
 
 <template>
 	<SideBar />
-	<div class="flex flex-col w-full scores">
-		<NavBar />
-		<div class="flex">
-			<MatchHistory />
-			<Scores />
-			<Standings />
-		</div>
+	<NavBar />
+	<div class="flex flex-col lg:flex-row scores overflow-y-scroll">
+		<MatchHistory class="hidden xl:block" />
+		<Scores />
+		<Standings />
+		<MatchHistory class="md:hidden block" />
 	</div>
 </template>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
-
-body {
-	overflow: hidden;
-}
 
 #app {
 	font-family: 'Montserrat', sans-serif;
@@ -33,9 +28,29 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 	color: black;
 	display: flex;
+	flex-direction: column;
 }
 
 .scores {
-	max-width: calc(100vw - 62.775px);
+	max-width: calc(100vw - 62px);
+	margin-left: 62px;
+}
+
+.h-scores {
+	height: calc(100vh - 58px);
+}
+
+@media (max-width: 1024px) {
+	.scores {
+		width: calc(100vw - 62px);
+	}
+
+	.h-scores {
+		height: auto;
+	}
+
+	.w-sc {
+		max-width: calc(100vw - 62px);
+	}
 }
 </style>

@@ -1,31 +1,31 @@
 <script setup>
-import MiniScoreCard from './MiniScoreCard.vue';
 </script>
 
 <template>
-	<div class="flex flex-col gap-10 h-screen w-full max-w-sm min-w-max p-8 border-r-2 border-slate-200 overflow-y-scroll">
-		<section class="flex flex-col max-w-xs gap-6">
-			<h1 class="font-bold">Recent Match</h1>
-			<div class="flex flex-col gap-4 items-center p-4 border-2 bg-slate-100 border-slate-200 text-slate-600 rounded-xl">
-				<section class="flex items-center gap-4">
-					<div class="font-bold flex items-center justify-center bg-slate-200 rounded-full w-16 h-16">MU</div>
-					<h2>vs</h2>
-					<div class="font-bold flex items-center justify-center bg-slate-200 rounded-full w-16 h-16">BITS</div>
-				</section>
+	<div class="flex flex-col h-scores p-8 border-r-2 border-slate-200">
+		<section class="flex flex-col w-matches gap-6">
+			<h1 class="font-bold">Matches</h1>
+			<div class="grid gap-4 grid-cols-3 justify-items-center bg-slate-200 text-slate-600 py-3 border-x-2 border-t-2 border-slate-200 rounded-t-xl text-lg">
+				<div class="font-bold">X</div>
 				<section class="flex gap-2">
-					<h2 class="font-bold">3</h2>
-					<span>:</span>
-					<h2 class="font-bold">2</h2>
+					<span>vs</span>
 				</section>
+				<div class="font-bold">Y</div>
 			</div>
 		</section>
-		<section class="flex flex-col gap-6 mb-12 max-w-xs">
-			<h1 class="font-bold">Previous Matches</h1>
-			<mini-score-card t1="BITS" t2="JNTU" />
-			<mini-score-card t1="X1" t2="X2" />
-			<mini-score-card t1="X4" t2="X3" />
-			<mini-score-card t1="X2" t2="JNTU" />
-		</section>
+		<div class="flex flex-col border-2 border-slate-200 rounded-b-xl divide-y-2 divide-dashed w-matches h-matches overflow-y-scroll">
+			<section v-for="i in 17" :key="i">
+				<div class="grid gap-4 grid-cols-3 justify-items-center text-slate-600 py-2">
+					<div class="font-bold">X{{ i }}</div>
+					<section class="flex gap-2">
+						<h2>3</h2>
+						<span>:</span>
+						<h2>2</h2>
+					</section>
+					<div class="font-bold">Y{{ i }}</div>
+				</div>
+			</section>
+		</div>
 	</div>
 </template>
 
@@ -33,5 +33,13 @@ import MiniScoreCard from './MiniScoreCard.vue';
 ::-webkit-scrollbar {
 	width: 0px;
 	background: transparent;
+}
+
+.w-matches {
+	width: 320px;
+}
+
+.h-matches {
+	max-height: 506px;
 }
 </style>

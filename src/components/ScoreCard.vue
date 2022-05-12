@@ -3,19 +3,19 @@
 		<section>
 			<h1 class="font-bold">Event Name</h1>
 		</section>
-		<section class="flex justify-center items-center gap-16 mx-12 my-6">
+		<section class="flex justify-center items-center gap-8 lg:gap-16 lg:mx-12 my-3 lg:my-6">
 			<section class="flex flex-col items-center gap-4">
-				<div class="font-bold flex items-center justify-center bg-slate-200 rounded-full w-24 h-24"><h1 class="bg-white rounded-full shadow-md w-16 h-16 flex items-center justify-center">{{ t1 }}</h1></div>
-				<h2>{{ t1 }}</h2>
+				<div class="font-bold flex items-center justify-center bg-slate-200 rounded-full w-20 lg:w-24 h-20 lg:h-24"><h1 class="bg-white rounded-full shadow-md w-12 lg:w-16 h-12 lg:h-16 flex items-center justify-center">{{ t1 }}</h1></div>
+				<h2 class="hidden lg:block">{{ t1 }}</h2>
 			</section>
-			<section class="flex gap-2 text-4xl">
+			<section class="flex gap-2 text-2xl lg:text-4xl">
 				<h2 class="font-bold">3</h2>
 				<span>:</span>
 				<h2 class="font-bold">2</h2>
 			</section>
 			<section class="flex flex-col items-center gap-4">
-				<div class="font-bold flex items-center justify-center bg-slate-200 rounded-full w-24 h-24"><h1 class="bg-white rounded-full shadow-md w-16 h-16 flex items-center justify-center">{{ t2 }}</h1></div>
-				<h2>{{ t2 }}</h2>
+				<div class="font-bold flex items-center justify-center bg-slate-200 rounded-full w-20 lg:w-24 h-20 lg:h-24"><h1 class="bg-white rounded-full shadow-md w-12 lg:w-16 h-12 lg:h-16 flex items-center justify-center">{{ t2 }}</h1></div>
+				<h2 class="hidden lg:block">{{ t2 }}</h2>
 			</section>
 		</section>
 	</div>
