@@ -1,10 +1,11 @@
 <template>
-	<header class="sticky -top-0 flex p-4 border-b-2 border-slate-200 bg-white nav">
-		<nav>
+	<header class="sticky -top-0 flex px-6 py-4 border-b-2 border-slate-200 bg-white nav">
+		<nav class="flex items-center justify-center lg:justify-between w-full">
 			<ul class="hidden lg:flex gap-6">
 				<li>Live Stream</li>
 				<li v-for="i in 2" :key="i">Item {{ i }}</li>
 			</ul>
+			<img src="../assets/logo.svg" class="w-48">
 		</nav>
 	</header>
 

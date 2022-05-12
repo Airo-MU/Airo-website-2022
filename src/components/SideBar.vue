@@ -6,22 +6,22 @@
 			</svg>
 		</button>
 		<ul class="ml-1 flex gap-6 flex-col text-slate-500">
-			<li><a href="" class="flex gap-6 items-center"><img src="../assets/Football.svg"> <h2>Cricket</h2></a></li>
-			<li><a href="" class="flex gap-6 items-center"><img src="../assets/Football.svg"> <h2>Basketball</h2></a></li>
-			<li><a href="" class="flex gap-6 items-center"><img src="../assets/Football.svg"> <h2>Badminton</h2></a></li>
+			<li><a href="" class="flex gap-6 items-center"><img src="../assets/Cricket.svg"> <h2>Cricket</h2></a></li>
+			<li><a href="" class="flex gap-6 items-center"><img src="../assets/Basketball.svg"> <h2>Basketball</h2></a></li>
+			<li><a href="" class="flex gap-6 items-center"><img src="../assets/Badminton.svg"> <h2>Badminton</h2></a></li>
 			<li><a href="" class="flex gap-6 items-center"><img src="../assets/Football.svg"> <h2>Football</h2></a></li>
-			<li><a href="" class="flex gap-6 items-center"><img src="../assets/Football.svg"> <h2>Volleyball</h2></a></li>
-			<li><a href="" class="flex gap-6 items-center"><img src="../assets/Football.svg"> <h2>Throwball</h2></a></li>
-			<li><a href="" class="flex gap-6 items-center"><img src="../assets/Football.svg"> <h2>Chess</h2></a></li>
-			<li><a href="" class="flex gap-6 items-center"><img src="../assets/Football.svg"> <h2>TT</h2></a></li>
-			<li><a href="" class="flex gap-6 items-center"><img src="../assets/Football.svg"> <h2>Pool</h2></a></li>
-			<li><a href="" class="flex gap-6 items-center"><img src="../assets/Football.svg"> <h2>Snooker</h2></a></li>
-			<li><a href="" class="flex gap-6 items-center"><img src="../assets/Football.svg"> <h2>KhoKho</h2></a></li>
-			<li><a href="" class="flex gap-6 items-center"><img src="../assets/Football.svg"> <h2>Tennis</h2></a></li>
+			<li><a href="" class="flex gap-6 items-center"><img src="../assets/Volleyball.svg"> <h2>Volleyball</h2></a></li>
+			<li><a href="" class="flex gap-6 items-center"><img src="../assets/Throwball.svg"> <h2>Throwball</h2></a></li>
+			<li><a href="" class="flex gap-6 items-center"><img src="../assets/Chess.svg"> <h2>Chess</h2></a></li>
+			<li><a href="" class="flex gap-6 items-center"><img src="../assets/TT.svg"> <h2>TT</h2></a></li>
+			<li><a href="" class="flex gap-6 items-center"><img src="../assets/Pool.svg"> <h2>Pool</h2></a></li>
+			<li><a href="" class="flex gap-6 items-center"><img src="../assets/Snooker.svg"> <h2>Snooker</h2></a></li>
+			<li><a href="" class="flex gap-6 items-center"><img src="../assets/Kho.svg"> <h2>KhoKho</h2></a></li>
+			<li><a href="" class="flex gap-6 items-center"><img src="../assets/Tennis.svg"> <h2>Tennis</h2></a></li>
 		</ul>
 	</nav>
 
-	<div class="fixed z-40 w-screen h-screen bg-white/40 backdrop-blur-sm" v-if="expand" @click="expand = !expand"></div>
+	<div class="hidden lg:block fixed z-40 inset-0 w-screen h-screen bg-white/30 backdrop-blur-sm" v-if="expand" @click="expand = !expand"></div>
 </template>
 
 <script>
