@@ -5,7 +5,7 @@
 				<li>Live Stream</li>
 				<li v-for="i in 2" :key="i">Item {{ i }}</li>
 			</ul>
-			<img src="../assets/logo.svg" class="w-48">
+			<img src="../assets/logo.svg" class="w-8">
 		</nav>
 	</header>
 

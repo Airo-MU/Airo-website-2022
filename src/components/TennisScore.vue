@@ -5,10 +5,17 @@
 				<div class="font-bold flex items-center justify-center bg-slate-200 rounded-full w-20 lg:w-24 h-20 lg:h-24"><h1 class="bg-white rounded-full shadow-md w-12 lg:w-16 h-12 lg:h-16 flex items-center justify-center">{{ t1 }}</h1></div>
 				<h2 class="hidden lg:block">{{ t1 }}</h2>
 			</section>
-			<section class="flex gap-2 text-2xl lg:text-4xl">
-				<h2 class="font-bold">3</h2>
-				<span>:</span>
-				<h2 class="font-bold">2</h2>
+			<section class="flex flex-col items-center lg:gap-2">
+				<section class="flex gap-2 text-2xl lg:text-4xl">
+					<h2 class="font-bold">30</h2>
+					<span>:</span>
+					<h2 class="font-bold">15</h2>
+				</section>
+				<section class="flex gap-2 text-xl lg:text-2xl">
+					<h2>2</h2>
+					<span>:</span>
+					<h2>1</h2>
+				</section>
 			</section>
 			<section class="flex flex-col items-center gap-4">
 				<div class="font-bold flex items-center justify-center bg-slate-200 rounded-full w-20 lg:w-24 h-20 lg:h-24"><h1 class="bg-white rounded-full shadow-md w-12 lg:w-16 h-12 lg:h-16 flex items-center justify-center">{{ t2 }}</h1></div>

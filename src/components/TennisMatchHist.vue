@@ -15,9 +15,9 @@
 				<div class="grid gap-4 grid-cols-3 justify-items-center text-slate-600 py-2">
 					<div class="font-bold">X{{ i }}</div>
 					<section class="flex gap-2">
-						<h2>3</h2>
-						<span>:</span>
-						<h2>2</h2>
+						<h2>runs</h2>
+						<span>/</span>
+						<h2>wickets</h2>
 					</section>
 					<div class="font-bold">Y{{ i }}</div>
 				</div>
@@ -33,7 +33,6 @@ export default {
 	}
 }
 </script>
-
 
 <style>
 ::-webkit-scrollbar {

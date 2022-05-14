@@ -1,26 +1,184 @@
 <script setup>
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import SideBar from './components/SideBar.vue';
 import MatchHistory from './components/MatchHistory.vue';
 import NavBar from './components/NavBar.vue';
-import Scores from './components/Scores.vue';
 import Standings from './components/Standings.vue';
+import CricketMatchHist from './components/CricketMatchHist.vue';
+import ScoreCard from './components/ScoreCard.vue';
+import CricketScore from './components/CricketScore.vue';
+import TennisScore from './components/TennisScore.vue';
+import TennisMatchHist from './components/TennisMatchHist.vue';
 </script>
 
 <template>
-	<SideBar />
+	<nav class="fixed z-50 flex flex-col gap-8 h-screen p-4 border-r-2 bg-white border-slate-200 overflow-hidden" :class="{'w-side': expand, 'w-16': !expand}">
+		<button class="ml-1" @click="expand = !expand">
+			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M21 15.61L19.59 17L14.58 12L19.59 7L21 8.39L17.44 12L21 15.61ZM3 6H16V8H3V6ZM3 13V11H13V13H3ZM3 18V16H16V18H3Z" fill="black"/>
+			</svg>
+		</button>
+		<ul class="ml-1 flex gap-6 flex-col text-slate-500">
+			<li><span class="flex gap-6 items-center cursor-pointer" @click="reset(sportname[0])"><img src="./assets/cricket.svg"><h2>{{sportname[0]}}</h2></span></li>
+			<li><span class="flex gap-6 items-center cursor-pointer" @click="reset(sportname[1])"><img src="./assets/basketball.svg"><h2>{{sportname[1]}}</h2></span></li>
+			<li><span class="flex gap-6 items-center cursor-pointer" @click="reset(sportname[2])"><img src="./assets/badminton.svg"><h2>{{sportname[2]}}</h2></span></li>
+			<li><span class="flex gap-6 items-center cursor-pointer" @click="reset(sportname[3])"><img src="./assets/football.svg"><h2>{{sportname[3]}}</h2></span></li>
+			<li><span class="flex gap-6 items-center cursor-pointer" @click="reset(sportname[4])"><img src="./assets/volleyball.svg"><h2>{{sportname[4]}}</h2></span></li>
+			<li><span class="flex gap-6 items-center cursor-pointer" @click="reset(sportname[5])"><img src="./assets/throwball.svg"><h2>{{sportname[5]}}</h2></span></li>
+			<li><span class="flex gap-6 items-center cursor-pointer" @click="reset(sportname[6])"><img src="./assets/chess.svg"><h2>{{sportname[6]}}</h2></span></li>
+			<li><span class="flex gap-6 items-center cursor-pointer" @click="reset(sportname[7])"><img src="./assets/tt.svg"><h2>{{sportname[7]}}</h2></span></li>
+			<li><span class="flex gap-6 items-center cursor-pointer" @click="reset(sportname[8])"><img src="./assets/pool.svg"><h2>{{sportname[8]}}</h2></span></li>
+			<li><span class="flex gap-6 items-center cursor-pointer" @click="reset(sportname[9])"><img src="./assets/snooker.svg"><h2>{{sportname[9]}}</h2></span></li>
+			<li><span class="flex gap-6 items-center cursor-pointer" @click="reset(sportname[10])"><img src="./assets/kho.svg"><h2>{{sportname[10]}}</h2></span></li>
+			<li><span class="flex gap-6 items-center cursor-pointer" @click="reset(sportname[11])"><img src="./assets/tennis.svg"><h2>{{sportname[11]}}</h2></span></li>
+		</ul>
+	</nav>
+
+	<div class="hidden lg:block fixed z-40 inset-0 w-screen h-screen bg-white/30 backdrop-blur-sm" v-if="expand" @click="expand = !expand"></div>
+
 	<NavBar />
 	<div class="flex flex-col lg:flex-row scores overflow-y-scroll">
-		<MatchHistory class="hidden xl:block" />
-		<Scores />
+		<CricketMatchHist class="hidden xl:block" :event="event" v-if="cricket" />
+		<TennisMatchHist class="hidden xl:block" :event="event" v-else-if="tennis || tt" />
+		<MatchHistory class="hidden xl:block" :event="event" v-else />
+
+		<div class="flex flex-col gap-6 lg:gap-10 h-scores w-sc lg:w-full px-6 lg:px-12 py-6 bg-slate-50 border-r-2 border-slate-200 overflow-y-scroll">
+			<div class="flex flex-col gap-3 lg:gap-6">
+				<h1 class="font-bold text-slate-500">Recent</h1>
+				<CricketScore t1="MU" t2="BITS" v-if="cricket" />
+				<TennisScore t1="MU" t2="BITS" v-else-if="tennis || tt" />
+				<ScoreCard t1="MU" t2="BITS" v-else />
+			</div>
+			<div class="flex flex-col gap-3 lg:gap-6">
+				<h1 class="font-bold text-slate-500">Last Match</h1>
+				<CricketScore t1="JNTU" t2="BITS" v-if="cricket" />
+				<TennisScore t1="JNTU" t2="BITS" v-else-if="tennis || tt" />
+				<ScoreCard t1="JNTU" t2="BITS" v-else />
+			</div>
+		</div>
+
 		<Standings />
-		<MatchHistory class="md:hidden block" />
+		<CricketMatchHist class="xl:hidden block" :event="event" v-if="cricket" />
+		<TennisMatchHist class="xl:hidden block" :event="event" v-else-if="tennis || tt" />
+		<MatchHistory class="xl:hidden block" :event="event" v-else />
 	</div>
 </template>
 
+<script>
+export default {
+	data() {
+		return {
+			expand: false,
+			event: '',
+			sportname: [
+				"Cricket",
+				"Basketball",
+				"Badminton",
+				"Football",
+				"Volleyball",
+				"Throwball",
+				"Chess",
+				"TT",
+				"Pool",
+				"Snooker",
+				"KhoKho",
+				"Tennis"
+			],
+			cricket: true,
+			basketball: false,
+			badminton: false,
+			football: false,
+			volleyball: false,
+			throwball: false,
+			chess: false,
+			tt: false,
+			pool: false,
+			snooker: false,
+			kho: false,
+			tennis: false
+		}
+	},
+	methods: {
+		reset(item) {
+			this.expand = false
+			this.cricket = false
+			this.basketball = false
+			this.badminton = false
+			this.football = false
+			this.volleyball = false
+			this.throwball = false
+			this.chess = false
+			this.tt = false
+			this.pool = false
+			this.snooker = false
+			this.kho = false
+			this.tennis = false
+
+			var inx = this.sportname.indexOf(item)
+			switch (inx) {
+				case 0:
+					this.cricket = true;
+					this.event = this.sportname[0]
+					break;
+				case 1:
+					this.basketball = true;
+					this.event = this.sportname[1]
+					break;
+				case 2:
+					this.badminton = true;
+					this.event = this.sportname[2]
+					break;
+				case 3:
+					this.football = true;
+					this.event = this.sportname[3]
+					break;
+				case 4:
+					this.volleyball = true;
+					this.event = this.sportname[4]
+					break;
+				case 5:
+					this.throwball = true;
+					this.event = this.sportname[5]
+					break;
+				case 6:
+					this.chess = true;
+					this.event = this.sportname[6]
+					break;
+				case 7:
+					this.tt = true;
+					this.event = this.sportname[7]
+					break;
+				case 8:
+					this.pool = true;
+					this.event = this.sportname[8]
+					break;
+				case 9:
+					this.snooker = true;
+					this.event = this.sportname[9]
+					break;
+				case 10:
+					this.kho = true;
+					this.event = this.sportname[10]
+					break;
+				case 11:
+					this.tennis = true;
+					this.event = this.sportname[11]
+					break;
+				default:
+					break;
+			}
+		}
+	},
+}
+</script>
+
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+::-webkit-scrollbar {
+	width: 0px;
+	background: transparent;
+}
 
 #app {
 	font-family: 'Montserrat', sans-serif;
@@ -37,7 +195,11 @@ import Standings from './components/Standings.vue';
 }
 
 .h-scores {
-	height: calc(100vh - 58px);
+	height: calc(100vh - 78.04px);
+}
+
+.w-side {
+	width: 260px;
 }
 
 @media (max-width: 1024px) {
