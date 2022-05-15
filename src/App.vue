@@ -37,7 +37,7 @@ import TennisMatchHist from './components/TennisMatchHist.vue';
 
 	<NavBar />
 	<div class="flex flex-col lg:flex-row scores overflow-y-scroll">
-		<CricketMatchHist class="hidden xl:block" :event="event" v-if="cricket" />
+		<CricketMatchHist class="hidden xl:block" :event="event" :link="link" v-if="cricket" />
 		<TennisMatchHist class="hidden xl:block" :event="event" v-else-if="tennis || tt" />
 		<div class="hidden xl:flex flex-col h-scores p-6 lg:p-8 border-r-2 border-slate-200" v-else>
 			<section class="flex flex-col w-matches gap-6">
@@ -123,6 +123,7 @@ export default {
 		return {
 			expand: false,
 			event: "Cricket",
+			link: "https://",
 			set: [],
 			spSet: [],
 			sportname: [

@@ -2,6 +2,7 @@
 	<div class="flex flex-col h-scores p-6 lg:p-8 border-r-2 border-slate-200 bg-slate-50 xl:bg-white">
 		<section class="flex flex-col w-matches gap-6">
 			<h1 class="font-bold">{{ event }} Matches</h1>
+			<h1 class="text-blue-700 cursor-pointer" @click="openURL(link)">View scorecard and details</h1>
 			<div class="grid gap-4 grid-cols-1 justify-items-center py-3 border-x-2 border-t-2 rounded-t-xl text-lg" style="background-color: #FFC758; border-color: #FFC758;">
 				<div class="font-bold">Previous Matches</div>
 			</div>
@@ -33,7 +34,8 @@ export default {
 		}
 	},
 	props: {
-		event: String
+		event: String,
+		link: String
 	},
 	created() {
 		axios
@@ -41,7 +43,12 @@ export default {
 			.then((res) => {
 				this.cricket = res.data
 			})
-	}
+	},
+	methods: {
+		openURL(url) {
+			window.open(url);
+		}
+	},
 }
 </script>
 
