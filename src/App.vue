@@ -20,16 +20,16 @@ import TennisMatchHist from './components/TennisMatchHist.vue';
 		<ul class="ml-1 flex gap-6 flex-col text-slate-500">
 			<li><span class="flex gap-6 items-center cursor-pointer" @click="reset(sportname[0])"><img src="./assets/cricket.svg"><h2>{{sportname[0]}}</h2></span></li>
 			<li><span class="flex gap-6 items-center cursor-pointer" @click="reset(sportname[1])"><img src="./assets/basketball.svg"><h2>{{sportname[1]}}</h2></span></li>
-			<li><span class="flex gap-6 items-center cursor-pointer" @click="reset(sportname[2])"><img src="./assets/badminton.svg"><h2>{{sportname[2]}}</h2></span></li>
-			<li><span class="flex gap-6 items-center cursor-pointer" @click="reset(sportname[3])"><img src="./assets/football.svg"><h2>{{sportname[3]}}</h2></span></li>
-			<li><span class="flex gap-6 items-center cursor-pointer" @click="reset(sportname[4])"><img src="./assets/volleyball.svg"><h2>{{sportname[4]}}</h2></span></li>
-			<li><span class="flex gap-6 items-center cursor-pointer" @click="reset(sportname[5])"><img src="./assets/throwball.svg"><h2>{{sportname[5]}}</h2></span></li>
-			<li><span class="flex gap-6 items-center cursor-pointer" @click="reset(sportname[6])"><img src="./assets/chess.svg"><h2>{{sportname[6]}}</h2></span></li>
-			<li><span class="flex gap-6 items-center cursor-pointer" @click="reset(sportname[7])"><img src="./assets/tt.svg"><h2>{{sportname[7]}}</h2></span></li>
-			<li><span class="flex gap-6 items-center cursor-pointer" @click="reset(sportname[8])"><img src="./assets/pool.svg"><h2>{{sportname[8]}}</h2></span></li>
-			<li><span class="flex gap-6 items-center cursor-pointer" @click="reset(sportname[9])"><img src="./assets/snooker.svg"><h2>{{sportname[9]}}</h2></span></li>
-			<li><span class="flex gap-6 items-center cursor-pointer" @click="reset(sportname[10])"><img src="./assets/kho.svg"><h2>{{sportname[10]}}</h2></span></li>
-			<li><span class="flex gap-6 items-center cursor-pointer" @click="reset(sportname[11])"><img src="./assets/tennis.svg"><h2>{{sportname[11]}}</h2></span></li>
+			<li><span class="gap-6 items-center cursor-pointer hidden" @click="reset(sportname[2])"><img src="./assets/badminton.svg"><h2>{{sportname[2]}}</h2></span></li>
+			<li><span class="gap-6 items-center cursor-pointer hidden" @click="reset(sportname[3])"><img src="./assets/football.svg"><h2>{{sportname[3]}}</h2></span></li>
+			<li><span class="gap-6 items-center cursor-pointer hidden" @click="reset(sportname[4])"><img src="./assets/volleyball.svg"><h2>{{sportname[4]}}</h2></span></li>
+			<li><span class="gap-6 items-center cursor-pointer hidden" @click="reset(sportname[5])"><img src="./assets/throwball.svg"><h2>{{sportname[5]}}</h2></span></li>
+			<li><span class="gap-6 items-center cursor-pointer hidden" @click="reset(sportname[6])"><img src="./assets/chess.svg"><h2>{{sportname[6]}}</h2></span></li>
+			<li><span class="gap-6 items-center cursor-pointer hidden" @click="reset(sportname[7])"><img src="./assets/tt.svg"><h2>{{sportname[7]}}</h2></span></li>
+			<li><span class="gap-6 items-center cursor-pointer hidden" @click="reset(sportname[8])"><img src="./assets/pool.svg"><h2>{{sportname[8]}}</h2></span></li>
+			<li><span class="gap-6 items-center cursor-pointer hidden" @click="reset(sportname[9])"><img src="./assets/snooker.svg"><h2>{{sportname[9]}}</h2></span></li>
+			<li><span class="gap-6 items-center cursor-pointer hidden" @click="reset(sportname[10])"><img src="./assets/kho.svg"><h2>{{sportname[10]}}</h2></span></li>
+			<li><span class="gap-6 items-center cursor-pointer hidden" @click="reset(sportname[11])"><img src="./assets/tennis.svg"><h2>{{sportname[11]}}</h2></span></li>
 		</ul>
 	</nav>
 
@@ -39,28 +39,46 @@ import TennisMatchHist from './components/TennisMatchHist.vue';
 	<div class="flex flex-col lg:flex-row scores overflow-y-scroll">
 		<CricketMatchHist class="hidden xl:block" :event="event" v-if="cricket" />
 		<TennisMatchHist class="hidden xl:block" :event="event" v-else-if="tennis || tt" />
-		<MatchHistory class="hidden xl:block" :event="event" v-else />
+		<div class="hidden xl:flex flex-col h-scores p-6 lg:p-8 border-r-2 border-slate-200" v-else>
+			<section class="flex flex-col w-matches gap-6">
+				<h1 class="font-bold">{{ event }} Matches</h1>
+				<div class="grid gap-4 grid-cols-1 justify-items-center py-3 border-x-2 border-t-2 rounded-t-xl text-lg" style="background-color: #FFC758; border-color: #FFC758;">
+					<div class="font-bold">Previous Matches</div>
+				</div>
+			</section>
+			<div class="flex flex-col border-2 border-slate-200 rounded-b-xl divide-y-2 divide-dashed w-matches h-matches overflow-y-scroll">
+				<section v-for="i in spSet" :key="i">
+					<div class="grid gap-4 grid-cols-3 justify-items-center text-slate-600 py-2">
+						<div class="font-bold">{{ i.team_1 }}</div>
+						<section class="flex gap-2">
+							<span>{{ i.running_score }}</span>
+						</section>
+						<div class="font-bold">{{ i.team_2 }}</div>
+					</div>
+				</section>
+			</div>
+		</div>
 
 		<div class="flex flex-col gap-6 lg:gap-10 h-scores w-sc lg:w-full px-6 lg:px-12 py-6 bg-slate-50 border-r-2 border-slate-200 overflow-y-scroll">
 			<div class="flex flex-col gap-3 lg:gap-6">
 				<h1 class="font-bold text-slate-500">Recent</h1>
 				<CricketScore :t1="spSet[0].bat_team" :t2="spSet[0].bowl_team" :score="spSet[0].running_score" :overs="spSet[0].overs" v-if="cricket" />
 				<TennisScore t1="MU" t2="BITS" v-else-if="tennis || tt" />
-				<ScoreCard t1="MU" t2="BITS" v-else />
+				<ScoreCard :t1="spSet[0].team_1" :t2="spSet[0].team_2" :score="spSet[0].running_score" v-else />
 			</div>
 			<div class="flex flex-col gap-3 lg:gap-6">
 				<h1 class="font-bold text-slate-500">Last Match</h1>
 				<CricketScore :t1="spSet[1].bat_team" :t2="spSet[1].bowl_team" :score="spSet[1].running_score" :overs="spSet[1].overs" v-if="cricket" />
 				<TennisScore t1="JNTU" t2="BITS" v-else-if="tennis || tt" />
-				<ScoreCard t1="JNTU" t2="BITS" v-else />
+				<ScoreCard :t1="spSet[0].team_1" :t2="spSet[0].team_2" :score="spSet[0].running_score" v-else />
 			</div>
 		</div>
 
-		<div class="flex flex-col gap-6 h-scores p-6 lg:p-8 border-r-2 border-slate-200">
+		<div class="flex flex-col gap-6 h-scores p-6 lg:p-8 border-r-2 border-slate-200 bg-slate-50 xl:bg-white">
 			<h1 class="font-bold">Standings</h1>
 			<section>
 				<section class="flex flex-col w-matches">
-					<div class="grid gap-4 grid-cols-3 bg-slate-200 text-slate-600 px-4 py-3 border-x-2 border-t-2 border-slate-200 rounded-t-xl text-lg">
+					<div class="grid gap-4 grid-cols-3 px-4 py-3 border-x-2 border-t-2 rounded-t-xl text-lg" style="background-color: #6BADDF; border-color: #6BADDF;">
 						<div v-for="(k, ind) in set[0]" :key="k" class="font-bold">{{ ind }}</div>
 					</div>
 				</section>
@@ -76,7 +94,25 @@ import TennisMatchHist from './components/TennisMatchHist.vue';
 
 		<CricketMatchHist class="xl:hidden block" :event="event" v-if="cricket" />
 		<TennisMatchHist class="xl:hidden block" :event="event" v-else-if="tennis || tt" />
-		<MatchHistory class="xl:hidden block" :event="event" v-else />
+		<div class="xl:hidden flex flex-col h-scores p-6 lg:p-8 border-r-2 border-slate-200 bg-slate-50 xl:bg-white" v-else>
+			<section class="flex flex-col w-matches gap-6">
+				<h1 class="font-bold">{{ event }} Matches</h1>
+				<div class="grid gap-4 grid-cols-1 justify-items-center py-3 border-x-2 border-t-2 rounded-t-xl text-lg" style="background-color: #FFC758; border-color: #FFC758;">
+					<div class="font-bold">Previous Matches</div>
+				</div>
+			</section>
+			<div class="flex flex-col border-2 border-slate-200 rounded-b-xl divide-y-2 divide-dashed w-matches h-matches overflow-y-scroll">
+				<section v-for="i in spSet" :key="i">
+					<div class="grid gap-4 grid-cols-3 justify-items-center text-slate-600 py-2">
+						<div class="font-bold">{{ i.team_1 }}</div>
+						<section class="flex gap-2">
+							<span>{{ i.running_score }}</span>
+						</section>
+						<div class="font-bold">{{ i.team_2 }}</div>
+					</div>
+				</section>
+			</div>
+		</div>
 	</div>
 </template>
 
@@ -86,7 +122,7 @@ export default {
 	data() {
 		return {
 			expand: false,
-			event: '',
+			event: "Cricket",
 			set: [],
 			spSet: [],
 			sportname: [
@@ -132,7 +168,7 @@ export default {
 	methods: {
 		callJSON(sp) {
 			axios
-			.get(`https://raw.githubusercontent.com/Airo-MU/matches/master/${sp}/cricket.json`)
+			.get(`https://raw.githubusercontent.com/Airo-MU/matches/master/${sp}/${sp}.json`)
 			.then((res) => {
 				this.spSet = res.data
 			})
@@ -259,6 +295,14 @@ export default {
 
 .standings {
 	min-width: 360px;
+}
+
+.w-matches {
+	width: 320px;
+}
+
+.h-matches {
+	max-height: 506px;
 }
 
 @media (max-width: 1024px) {

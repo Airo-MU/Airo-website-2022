@@ -1,8 +1,8 @@
 <template>
-	<div class="flex flex-col h-scores p-6 lg:p-8 border-r-2 border-slate-200">
+	<div class="flex flex-col h-scores p-6 lg:p-8 border-r-2 border-slate-200 bg-slate-50 xl:bg-white">
 		<section class="flex flex-col w-matches gap-6">
 			<h1 class="font-bold">{{ event }} Matches</h1>
-			<div class="grid gap-4 grid-cols-1 justify-items-center bg-slate-200 text-slate-600 py-3 border-x-2 border-t-2 border-slate-200 rounded-t-xl text-lg">
+			<div class="grid gap-4 grid-cols-1 justify-items-center py-3 border-x-2 border-t-2 rounded-t-xl text-lg" style="background-color: #FFC758; border-color: #FFC758;">
 				<div class="font-bold">Previous Matches</div>
 			</div>
 		</section>
