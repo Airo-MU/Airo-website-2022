@@ -11,15 +11,15 @@
 			</div>
 		</section>
 		<div class="flex flex-col border-2 border-slate-200 rounded-b-xl divide-y-2 divide-dashed w-matches h-matches overflow-y-scroll">
-			<section v-for="i in 17" :key="i">
+			<section v-for="i in cricket" :key="i">
 				<div class="grid gap-4 grid-cols-3 justify-items-center text-slate-600 py-2">
-					<div class="font-bold">X{{ i }}</div>
+					<div class="font-bold">{{ i.bat_team }}</div>
 					<section class="flex gap-2">
-						<h2>runs</h2>
+						<h2>{{ i.runs }}</h2>
 						<span>/</span>
-						<h2>wickets</h2>
+						<h2>{{ i.wickets }}</h2>
 					</section>
-					<div class="font-bold">Y{{ i }}</div>
+					<div class="font-bold">{{ i.bowl_team }}</div>
 				</div>
 			</section>
 		</div>
@@ -27,9 +27,23 @@
 </template>
 
 <script>
+import axios from "axios"
+
 export default {
+	data() {
+		return {
+			cricket: []
+		}
+	},
 	props: {
 		event: String
+	},
+	created() {
+		axios
+			.get("https://raw.githubusercontent.com/Airo-MU/matches/master/cricket/cricket.json")
+			.then((res) => {
+				this.cricket = res.data
+			})
 	}
 }
 </script>

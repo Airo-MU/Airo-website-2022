@@ -3,7 +3,6 @@
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
 import MatchHistory from './components/MatchHistory.vue';
 import NavBar from './components/NavBar.vue';
-import Standings from './components/Standings.vue';
 import CricketMatchHist from './components/CricketMatchHist.vue';
 import ScoreCard from './components/ScoreCard.vue';
 import CricketScore from './components/CricketScore.vue';
@@ -45,19 +44,38 @@ import TennisMatchHist from './components/TennisMatchHist.vue';
 		<div class="flex flex-col gap-6 lg:gap-10 h-scores w-sc lg:w-full px-6 lg:px-12 py-6 bg-slate-50 border-r-2 border-slate-200 overflow-y-scroll">
 			<div class="flex flex-col gap-3 lg:gap-6">
 				<h1 class="font-bold text-slate-500">Recent</h1>
-				<CricketScore t1="MU" t2="BITS" v-if="cricket" />
+				<CricketScore :t1="spSet[0].bat_team" :t2="spSet[0].bowl_team" :runs="spSet[0].runs" :wickets="spSet[0].wickets" :overs="spSet[0].overs" v-if="cricket" />
 				<TennisScore t1="MU" t2="BITS" v-else-if="tennis || tt" />
 				<ScoreCard t1="MU" t2="BITS" v-else />
 			</div>
 			<div class="flex flex-col gap-3 lg:gap-6">
 				<h1 class="font-bold text-slate-500">Last Match</h1>
-				<CricketScore t1="JNTU" t2="BITS" v-if="cricket" />
+				<CricketScore :t1="spSet[1].bat_team" :t2="spSet[1].bowl_team" :runs="spSet[1].runs" :wickets="spSet[1].wickets" :overs="spSet[1].overs" v-if="cricket" />
 				<TennisScore t1="JNTU" t2="BITS" v-else-if="tennis || tt" />
 				<ScoreCard t1="JNTU" t2="BITS" v-else />
 			</div>
 		</div>
 
-		<Standings />
+		<div class="flex flex-col gap-6 h-scores p-6 lg:p-8 border-r-2 border-slate-200">
+			<h1 class="font-bold">Standings</h1>
+			<section>
+				<section class="flex flex-col w-matches">
+					<div class="grid gap-4 grid-cols-3 bg-slate-200 text-slate-600 px-4 py-3 border-x-2 border-t-2 border-slate-200 rounded-t-xl text-lg">
+						<div v-for="(k, ind) in set[0]" :key="k" class="font-bold">{{ ind }}</div>
+					</div>
+				</section>
+				<div class="flex flex-col border-2 border-slate-200 rounded-b-xl divide-y-2 divide-dashed w-matches h-matches overflow-y-scroll">
+					<section v-for="st in set" :key="st">
+						<div class="grid gap-4 grid-cols-3 text-slate-600 px-4 py-2">
+							<div class="font-bold">{{ st.Team }}</div>
+							<div>{{ st.NRR }}</div>
+							<div>{{ st.Points }}</div>
+						</div>
+					</section>
+				</div>
+			</section>
+		</div>
+
 		<CricketMatchHist class="xl:hidden block" :event="event" v-if="cricket" />
 		<TennisMatchHist class="xl:hidden block" :event="event" v-else-if="tennis || tt" />
 		<MatchHistory class="xl:hidden block" :event="event" v-else />
@@ -65,11 +83,14 @@ import TennisMatchHist from './components/TennisMatchHist.vue';
 </template>
 
 <script>
+import axios from 'axios';
 export default {
 	data() {
 		return {
 			expand: false,
 			event: '',
+			set: [],
+			spSet: [],
 			sportname: [
 				"Cricket",
 				"Basketball",
@@ -98,7 +119,31 @@ export default {
 			tennis: false
 		}
 	},
+	created() {
+		axios
+			.get("https://raw.githubusercontent.com/Airo-MU/matches/master/cricket/cricket.json")
+			.then((res) => {
+				this.spSet = res.data
+			})
+		axios
+			.get("https://raw.githubusercontent.com/Airo-MU/matches/master/cricket/standings.json")
+			.then((res) => {
+				this.set = res.data
+			})
+	},
 	methods: {
+		callJSON(sp) {
+			axios
+			.get(`https://raw.githubusercontent.com/Airo-MU/matches/master/${sp}/cricket.json`)
+			.then((res) => {
+				this.spSet = res.data
+			})
+			axios
+			.get(`https://raw.githubusercontent.com/Airo-MU/matches/master/${sp}/standings.json`)
+			.then((res) => {
+				this.set = res.data
+			})
+		},
 		reset(item) {
 			this.expand = false
 			this.cricket = false
@@ -118,50 +163,62 @@ export default {
 			switch (inx) {
 				case 0:
 					this.cricket = true;
+					this.callJSON("cricket")
 					this.event = this.sportname[0]
 					break;
 				case 1:
 					this.basketball = true;
+					this.callJSON("basketball")
 					this.event = this.sportname[1]
 					break;
 				case 2:
 					this.badminton = true;
+					this.callJSON("badminton")
 					this.event = this.sportname[2]
 					break;
 				case 3:
 					this.football = true;
+					this.callJSON("football")
 					this.event = this.sportname[3]
 					break;
 				case 4:
 					this.volleyball = true;
+					this.callJSON("volleyball")
 					this.event = this.sportname[4]
 					break;
 				case 5:
 					this.throwball = true;
+					this.callJSON("throwball")
 					this.event = this.sportname[5]
 					break;
 				case 6:
 					this.chess = true;
+					this.callJSON("chess")
 					this.event = this.sportname[6]
 					break;
 				case 7:
 					this.tt = true;
+					this.callJSON("tt")
 					this.event = this.sportname[7]
 					break;
 				case 8:
 					this.pool = true;
+					this.callJSON("pool")
 					this.event = this.sportname[8]
 					break;
 				case 9:
 					this.snooker = true;
+					this.callJSON("snooker")
 					this.event = this.sportname[9]
 					break;
 				case 10:
 					this.kho = true;
+					this.callJSON("kho")
 					this.event = this.sportname[10]
 					break;
 				case 11:
 					this.tennis = true;
+					this.callJSON("tennis")
 					this.event = this.sportname[11]
 					break;
 				default:
@@ -202,6 +259,10 @@ export default {
 	width: 260px;
 }
 
+.standings {
+	min-width: 360px;
+}
+
 @media (max-width: 1024px) {
 	.scores {
 		width: calc(100vw - 62px);
@@ -213,6 +274,10 @@ export default {
 
 	.w-sc {
 		max-width: calc(100vw - 62px);
+	}
+
+	.w-matches {
+		width: auto;
 	}
 }
 </style>
