@@ -2,8 +2,8 @@
 	<header class="sticky -top-0 flex px-6 py-4 border-b-2 border-slate-200 bg-white nav">
 		<nav class="flex items-center justify-center lg:justify-between w-full">
 			<ul class="hidden lg:flex gap-6">
-				<li>Live Stream</li>
-				<li v-for="i in 2" :key="i">Item {{ i }}</li>
+				<li><a href="">Live Stream</a></li>
+				<li><a href="">Gallery</a></li>
 			</ul>
 			<img src="../assets/logo.svg" class="w-8">
 		</nav>
@@ -26,8 +26,8 @@
 				</svg>
 			</button>
 			<ul class="flex flex-col mb-20 items-center gap-4 text-black">
-				<li class="bg-white shadow-lg p-4 rounded-lg w-full text-center"><a class="hover:underline transition ease-in-out duration-300 cursor-pointer" href="">Live Stream</a></li>
-				<li v-for="i in 2" :key="i" class="bg-white shadow-lg p-4 rounded-lg w-full text-center"><a class="hover:underline transition ease-in-out duration-300 cursor-pointer" href="">Item {{ i }}</a></li>
+				<li class="bg-white shadow-lg p-4 rounded-lg w-full text-center"><a class="hover:underline transition ease-in-out duration-300 cursor-pointer" href=""><a href="">Live Stream</a></a></li>
+				<li class="bg-white shadow-lg p-4 rounded-lg w-full text-center"><a class="hover:underline transition ease-in-out duration-300 cursor-pointer" href=""><a href="">Gallery</a></a></li>
 			</ul>
 		</div>
 	</div>
