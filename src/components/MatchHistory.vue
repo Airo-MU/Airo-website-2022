@@ -9,11 +9,11 @@
 		<div class="flex flex-col border-2 border-slate-200 rounded-b-xl divide-y-2 divide-dashed w-matches h-matches overflow-y-scroll">
 			<section v-for="i in 17" :key="i">
 				<div class="grid gap-4 grid-cols-3 justify-items-center text-slate-600 py-2">
-					<div class="font-bold">X{{ i }}</div>
-					<section class="flex gap-2">
+					<div class="font-bold text-xs lg:text-base">X{{ i }}</div>
+					<section class="flex gap-2 text-xs lg:text-base">
 						<span>{{ score }}</span>
 					</section>
-					<div class="font-bold">Y{{ i }}</div>
+					<div class="font-bold text-xs lg:text-base">Y{{ i }}</div>
 				</div>
 			</section>
 		</div>

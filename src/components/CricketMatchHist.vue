@@ -10,14 +10,14 @@
 		<div class="flex flex-col border-2 border-slate-200 rounded-b-xl divide-y-2 divide-dashed w-matches h-matches overflow-y-scroll">
 			<section v-for="i in cricket" :key="i">
 				<div class="grid gap-4 grid-cols-4 justify-items-center text-slate-600 py-2">
-					<div class="font-bold">{{ i.bat_team }}</div>
-					<section class="flex gap-2">
+					<div class="font-bold text-xs lg:text-base">{{ i.bat_team }}</div>
+					<section class="flex gap-2 text-xs lg:text-base">
 						<span>{{ i.t1_score }}</span>
 					</section>
-					<section class="flex gap-2">
+					<section class="flex gap-2 text-xs lg:text-base">
 						<span>{{ i.t2_score }}</span>
 					</section>
-					<div class="font-bold">{{ i.bowl_team }}</div>
+					<div class="font-bold text-xs lg:text-base">{{ i.bowl_team }}</div>
 				</div>
 			</section>
 		</div>

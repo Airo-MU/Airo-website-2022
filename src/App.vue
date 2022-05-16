@@ -123,7 +123,7 @@ export default {
 		return {
 			expand: false,
 			event: "Cricket",
-			link: "https://",
+			link: "https://cricheroes.in/tournament/424723/AIRO-2K22",
 			set: [],
 			spSet: [],
 			sportname: [
