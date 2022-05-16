@@ -5,7 +5,7 @@
 				<li><a href="">Live Stream</a></li>
 				<li><a href="">Gallery</a></li>
 			</ul>
-			<img src="../assets/logo.svg" class="w-8">
+			<a href="https://www.instagram.com/aether_mu/" target="blank"><img src="../assets/logo.svg" class="w-8"></a>
 		</nav>
 	</header>
 
